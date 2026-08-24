@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # Ersetze dies durch die echte Stream-URL aus dem FM-Funknetz
-STREAM_URL = "HIER_DEINE_FM_FUNKNETZ_STREAM_URL_EINFUEGEN"
+STREAM_URL = ""http://stream.fm-funknetz.de:8000/tg313"
 
 @app.route('/stream')
 def stream():
