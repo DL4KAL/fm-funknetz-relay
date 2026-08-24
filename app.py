@@ -1,16 +1,16 @@
-from flask import Flask, Response
+from flask import Flask, Response, render_template_string
 import requests
 
 app = Flask(__name__)
 
-# Trage hier die direkte Stream-URL oder die Quelle aus dem FM-Funknetz ein
-STREAM_URL = "HIER_DIE_INTERNE_STREAM_ODER_RELAY_URL_EINTRAGEN"
+# Ersetze dies durch die echte Stream-URL aus dem FM-Funknetz
+STREAM_URL = "HIER_DEINE_FM_FUNKNETZ_STREAM_URL_EINFUEGEN"
 
 @app.route('/stream')
 def stream():
     def generate():
         try:
-            # Verbindung zum Funknetz-Stream aufbauen
+            # stream=True ist wichtig, damit der Audiostream kontinuierlich fließt
             r = requests.get(STREAM_URL, stream=True, timeout=10)
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
@@ -22,7 +22,7 @@ def stream():
 
 @app.route('/')
 def index():
-    return "FM-Funknetz Relay Service läuft."
+    return "FM-Funknetz Relay läuft einwandfrei."
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
